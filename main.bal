@@ -1,25 +1,17 @@
 import ballerina/io;
 import ballerina/time;
-import ballerina/lang.runtime;
 
 public function main() {
-    io:println("Time logging started. Will run every 1 minute for 1 hour...");
-    
-    // Run for 60 iterations (60 minutes = 1 hour)
-    int iterations = 60;
-    int currentIteration = 1;
-    
-    while currentIteration <= iterations {
-        time:Utc currentTime = time:utcNow();
-        io:println("Iteration ", currentIteration, " - Current time: ", currentTime);
-        
-        // Sleep for 60 seconds (1 minute) if not the last iteration
-        if currentIteration < iterations {
-            runtime:sleep(60);
-        }
-        
-        currentIteration = currentIteration + 1;
-    }
-    
-    io:println("Time logging completed after 1 hour.");
+    // Get current UTC time
+    time:Utc currentTime = time:utcNow();
+
+    // Convert to RFC 3339 string format (e.g., "2007-12-03T10:15:30.00Z")
+    string timeString = time:utcToString(currentTime);
+
+    // Extract time portion (HH:mm:ss) from the RFC 3339 format
+    // Format: YYYY-MM-DDTHH:mm:ss.ssZ, so time starts at index 11
+    string timePortion = timeString.substring(startIndex = 11, endIndex = 19);
+
+    // Print current time with location
+    io:println("Current time: ", timePortion, " (UTC)", "End");
 }

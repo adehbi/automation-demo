@@ -1,3 +1,3 @@
 # Project Overview
 
-simple time loggin app using a scheduler
+Simple time display app that shows current time in HH:mm:ss format with location
