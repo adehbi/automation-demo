@@ -1,0 +1,7 @@
+[package]
+org = "ahmedd"
+name = "automation_demo"
+version = "0.1.0"
+
+[build-options]
+sticky = true
